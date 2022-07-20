@@ -66,13 +66,13 @@ final class GDO_Order extends GDO
 	/**
 	 * @return GDO_Address
 	 */
-	public function getAddress() { return $this->getValue('order_address'); }
+	public function getAddress() { return $this->gdoValue('order_address'); }
 	public function getAddressId() { return $this->gdoVar('order_address'); }
 	
 	/**
 	 * @return GDO_User
 	 */
-	public function getCreator() { return $this->getValue('order_by'); }
+	public function getCreator() { return $this->gdoValue('order_by'); }
 	public function getCreatorID() { return $this->gdoVar('order_by');  }
 	
 	public function isCreator(GDO_User $user) { return $this->getCreatorID() === $user->getID(); }
@@ -105,7 +105,7 @@ final class GDO_Order extends GDO
 	 */
 	public function getOrderable()
 	{
-		return $this->getValue('order_item');
+		return $this->gdoValue('order_item');
 	}
 	
 	/**
@@ -122,7 +122,7 @@ final class GDO_Order extends GDO
 	public function getTitle() { return $this->gdoVar('order_title'); }
 	public function getTitleEN() { return $this->gdoVar('order_title_en'); }
 	
-	public function getTax() { return $this->getValue('order_price_tax'); }
+	public function getTax() { return $this->gdoValue('order_price_tax'); }
 	public function getTaxFactor() { return $this->getTax() / 100.0; }
 	public function getPriceBrutto() { return $this->getPrice(); }
 	public function getPriceMWST() { return $this->getPriceBrutto() - $this->getPriceNetto(); }
@@ -160,7 +160,7 @@ final class GDO_Order extends GDO
 		$this->saveValue('order_item', $orderable);
 		$this->updateOrderNum();
 		
-		return GDT_Success::responseWith('msg_order_execute')->addField($response)->addField($this->redirectSuccess());
+		return GDT_Success::make()->text('msg_order_execute')->addField($response)->addField($this->redirectSuccess());
 	}
 	
 	private function updateOrderNum()
