@@ -25,7 +25,7 @@ final class Order extends MethodForm
 	
 	public function isTrivial() { return false; }
 	
-	public function showInSitemap() { return false; }
+	public function showInSitemap() : bool { return false; }
 	
 	public function gdoParameters() : array
 	{
