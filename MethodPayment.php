@@ -13,7 +13,7 @@ abstract class MethodPayment extends Method
 	
 	public function showInSitemap() : bool { return false; }
 	
-	public function isAlwaysTransactional() { return true; }
+	public function isAlwaysTransactional() : bool { return true; }
 	
 	/**
 	 * @return GDO_Order
