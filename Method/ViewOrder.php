@@ -23,7 +23,7 @@ final class ViewOrder extends Method
 		return $this->gdoParameterValue('id');
 	}
 	
-	public function hasPermission(GDO_User $user)
+	public function hasPermission(GDO_User $user) : bool
 	{
 		if ($order = $this->getOrder())
 		{
