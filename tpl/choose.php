@@ -25,10 +25,10 @@ $order instanceof GDO_Order;
 echo $order->renderCard();
 
 $form = GDT_Form::make('form');
-$form->addFields(array(
+$form->addFields(
 	GDT_Hidden::make('order_address')->initial($order->getAddressId()),
 	GDT_Hidden::make('order_module')->initial($payment->getName()),
-));
+);
 $bar = GDT_Bar::make()->horizontal();
 $bar->addField($payment->makePaymentButton($order));
 $form->addField($bar);
