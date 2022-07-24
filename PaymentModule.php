@@ -14,7 +14,7 @@ abstract class PaymentModule extends GDO_Module
 	/**
 	 * @var PaymentModule[]
 	 */
-	public static $paymentModules = [];
+	public static array $paymentModules = [];
 	/**
 	 * @return PaymentModule[]
 	 */

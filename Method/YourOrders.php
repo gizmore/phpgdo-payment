@@ -5,6 +5,7 @@ use GDO\Payment\GDO_Order;
 use GDO\Table\MethodQueryTable;
 use GDO\UI\GDT_Button;
 use GDO\User\GDO_User;
+use GDO\Core\GDO;
 use GDO\Core\GDT_Response;
 use GDO\UI\GDT_Link;
 use GDO\UI\GDT_Bar;
@@ -13,7 +14,7 @@ final class YourOrders extends MethodQueryTable
 {
 	public function isUserRequired() : bool { return true; }
 	
-	public function gdoTable()
+	public function gdoTable() : GDO
 	{
 	    return GDO_Order::table();
 	}

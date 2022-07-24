@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Payment\Method;
 
+use GDO\Core\GDO;
 use GDO\Payment\GDO_Order;
 use GDO\Table\MethodQueryList;
 use GDO\User\GDO_User;
@@ -13,7 +14,7 @@ final class History extends MethodQueryList
 {
 	public function isUserRequired() : bool { return true; }
 	
-	public function gdoTable() { return GDO_Order::table(); }
+	public function gdoTable() : GDO { return GDO_Order::table(); }
 	
 	public function getQuery()
 	{

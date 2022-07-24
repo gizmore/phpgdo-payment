@@ -5,6 +5,7 @@ use GDO\Payment\GDO_Order;
 use GDO\Table\MethodQueryTable;
 use GDO\UI\GDT_EditButton;
 use GDO\Address\GDO_Address;
+use GDO\Core\GDO;
 
 /**
  * Table of orders for staff.
@@ -17,7 +18,7 @@ final class Orders extends MethodQueryTable
 {
 	public function getPermission() : ?string { return 'staff'; }
 
-	public function gdoTable()
+	public function gdoTable() : GDO
 	{
 	    return GDO_Order::table();
 	}

@@ -68,7 +68,7 @@ final class Choose extends Method
 	    ];
 	}
 	
-	public function onInit() : void
+	public function onInit()
 	{
 		$this->address = $this->gdoParameterValue('order_address');
 		
@@ -93,7 +93,7 @@ final class Choose extends Method
 		{
 			if (GDO_Session::get('gdo_order'))
 			{
-				return Website::redirect(href($this->paymentModule->getName(), 'InitPayment'));
+				return $this->redirect(href($this->paymentModule->getName(), 'InitPayment'));
 			}
 		}
 

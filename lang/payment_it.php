@@ -16,7 +16,7 @@ return array(
 #############################################################
 'msg_order_execute' => 'Il vostro ordine é stato effettuato con successo.',
 #############################################################
-'ft_payment_order' => 'Ordine',
+'mt_payment_order' => 'Ordine',
 'btn_execute' => 'Effettuare',
 #############################################################
 'link_your_orders' => 'Vostri ordini',
