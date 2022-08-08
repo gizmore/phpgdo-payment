@@ -11,7 +11,7 @@ abstract class MethodPayment extends Method
 	 */
 	private $order;
 	
-	public function showInSitemap() : bool { return false; }
+	public function isShownInSitemap() : bool { return false; }
 	
 	public function isAlwaysTransactional() : bool { return true; }
 	

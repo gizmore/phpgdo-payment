@@ -24,9 +24,9 @@ use GDO\Address\GDT_Address;
  */
 final class Choose extends Method
 {
-	public function showInSitemap() : bool { return false; }
+	public function isShownInSitemap() : bool { return false; }
 	
-	public function isTrivial() { return false; }
+	public function isTrivial() : bool { return false; }
 	
 	/**
 	 * @var GDO_User

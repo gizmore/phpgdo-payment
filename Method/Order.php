@@ -23,9 +23,9 @@ final class Order extends MethodForm
 {
 	public function getPermission() : ?string { return 'staff'; }
 	
-	public function isTrivial() { return false; }
+	public function isTrivial() : bool { return false; }
 	
-	public function showInSitemap() : bool { return false; }
+	public function isShownInSitemap() : bool { return false; }
 	
 	public function gdoParameters() : array
 	{
