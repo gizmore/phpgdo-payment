@@ -6,6 +6,7 @@ use GDO\Table\MethodQueryTable;
 use GDO\UI\GDT_EditButton;
 use GDO\Address\GDO_Address;
 use GDO\Core\GDO;
+use GDO\DB\Query;
 
 /**
  * Table of orders for staff.
@@ -23,7 +24,7 @@ final class Orders extends MethodQueryTable
 	    return GDO_Order::table();
 	}
 	
-	public function getQuery()
+	public function getQuery() : Query
 	{
 		return $this->gdoTable()->select()->joinObject('order_address', 'LEFT JOIN');
 	}

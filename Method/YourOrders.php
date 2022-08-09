@@ -7,6 +7,7 @@ use GDO\UI\GDT_Button;
 use GDO\User\GDO_User;
 use GDO\Core\GDO;
 use GDO\Core\GDT_Response;
+use GDO\DB\Query;
 use GDO\UI\GDT_Link;
 use GDO\UI\GDT_Bar;
 
@@ -19,7 +20,7 @@ final class YourOrders extends MethodQueryTable
 	    return GDO_Order::table();
 	}
 	
-	public function getQuery()
+	public function getQuery() : Query
 	{
 		return GDO_Order::table()->select()->where('order_by='.GDO_User::current()->getID());
 	}
