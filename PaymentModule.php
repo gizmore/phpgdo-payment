@@ -112,7 +112,7 @@ abstract class PaymentModule extends GDO_Module
 		return sprintf('%s-%s-%s%06d', sitename(), $year, Random::randomKey(4, Random::HEXLOWER), $order->getID());
 	}
 	
-	public function renderChoice() : string
+	public function renderOption() : string
 	{
 		return $this->displayPaymentMethodName();
 	}

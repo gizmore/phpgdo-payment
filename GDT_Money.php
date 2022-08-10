@@ -20,7 +20,7 @@ class GDT_Money extends GDT_Decimal
 	
 	public function defaultLabel() : self { return $this->label('price'); }
 	
-	public function renderCell() : string
+	public function renderHTML() : string
 	{
 		return self::renderPrice($this->getValue());
 	}

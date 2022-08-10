@@ -117,7 +117,7 @@ final class GDO_Order extends GDO
 	}
 	
 	public function getPrice() { return $this->gdoVar('order_price'); }
-	public function displayPrice() { return $this->gdoColumn('order_price')->renderCell(); }
+	public function displayPrice() { return $this->gdoColumn('order_price')->renderHTML(); }
 	public function displayPriceNetto() { return $this->displayMoney($this->getPriceNetto()); }
 	public function getTitle() { return $this->gdoVar('order_title'); }
 	public function getTitleEN() { return $this->gdoVar('order_title_en'); }
@@ -130,7 +130,7 @@ final class GDO_Order extends GDO
 	
 	public function displayMoney($price)
 	{
-		return $this->gdoColumnCopy('order_price')->var($price)->renderCell();
+		return $this->gdoColumnCopy('order_price')->var($price)->renderHTML();
 	}
 	
 	##############
