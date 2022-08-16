@@ -38,7 +38,7 @@ final class Module_Payment extends GDO_Module
 		return ['Address', 'TCPDF'];
 	}
 
-	public function hrefAdministration() : ?string { return href('Payment', 'Orders'); }
+	public function href_administrate_module() : ?string { return href('Payment', 'Orders'); }
 	
 	public function getClasses() : array { return [GDO_Order::class]; }
 	public function onLoadLanguage() : void { $this->loadLanguage('lang/payment'); }
