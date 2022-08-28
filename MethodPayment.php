@@ -3,6 +3,7 @@ namespace GDO\Payment;
 
 use GDO\Core\Method;
 use GDO\Session\GDO_Session;
+use GDO\UI\GDT_HTML;
 
 abstract class MethodPayment extends Method
 {
@@ -50,7 +51,7 @@ abstract class MethodPayment extends Method
 	
 	public function renderOrder(GDO_Order $order)
 	{
-		return $order->responseCard();
+		return GDT_HTML::make()->var($order->renderCard());
 	}
 	
 }

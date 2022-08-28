@@ -46,7 +46,7 @@ final class Order extends MethodForm
 	{
 		$order = $this->getOrder();
 		$address = $order->getAddress();
-		$form->addField(GDT_HTML::withHTML($order->getOrderable()->renderCard()));
+		$form->addField(GDT_HTML::make()->var($order->getOrderable()->renderCard()));
 		$form->addField(GDT_Divider::make()->label('div_order_section'));
 		$form->addFields($order->gdoColumnsExcept('order_item', 'order_title'));
 		$form->addFields($address->gdoColumnsExcept('address_id'));
