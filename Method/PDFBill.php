@@ -49,7 +49,7 @@ final class PDFBill extends Method
 			}
 		}
 		catch (\Exception $e) {}
-		return $this->error('err_no_permission');
+		return $this->error('err_permission_required');
 	}
 	
 	public function execute()
