@@ -68,7 +68,7 @@ final class Choose extends Method
 	    ];
 	}
 	
-	public function onInit()
+	public function onMethodInit()
 	{
 		$this->address = $this->gdoParameterValue('order_address');
 		
