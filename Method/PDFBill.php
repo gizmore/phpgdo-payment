@@ -20,6 +20,11 @@ use GDO\Language\Trans;
  */
 final class PDFBill extends Method
 {
+	public function getMethodTitle() : string
+	{
+		return t('btn_pdf_bill');
+	}
+	
 	/**
 	 * @return GDO_Order
 	 */

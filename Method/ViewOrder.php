@@ -8,6 +8,11 @@ use GDO\Core\GDT_Object;
 
 final class ViewOrder extends Method
 {
+	public function getMethodTitle() : string
+	{
+		return t('view_order');
+	}
+	
 	public function gdoParameters() : array
 	{
 		return array(
