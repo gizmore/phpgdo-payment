@@ -24,7 +24,7 @@ return array(
 'btn_order' => 'Bestellen',
 'err_order_pending' => 'Your payment is still pending.',
 #############################################################
-	'vat' => 'St.Nr.',
+	'vat' => 'VAT',
 	'btn_pdf_bill' => 'Rechnung',
 	'pdfbill_filename' => 'Rechnung_%s_%s_%s.pdf',
 	'pdf_subject_payment' => 'Zahlungsvorgang',

@@ -24,7 +24,7 @@ return array(
 'btn_order' => 'Bestellen',
 'err_order_pending' => 'Ihre Zahlung ist weiterhin ausstehend.',
 #############################################################
-'vat' => 'St.Nr.',
+'vat' => 'Steuernummer',
 'btn_pdf_bill' => 'Rechnung',
 'pdfbill_filename' => 'Rechnung_%s_%s_%s.pdf',
 'pdf_subject_payment' => 'Zahlungsvorgang',
