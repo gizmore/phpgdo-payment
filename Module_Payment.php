@@ -14,6 +14,7 @@ use GDO\UI\GDT_Divider;
 use GDO\Date\GDT_Duration;
 use GDO\Core\GDT_Checkbox;
 use GDO\User\GDO_User;
+use GDO\UI\GDT_Menu;
 
 /**
  * Base Payment module.
@@ -79,7 +80,9 @@ final class Module_Payment extends GDO_Module
 	    	if (GDO_User::current()->isUser())
 	    	{
 		        $bar = GDT_Page::$INSTANCE->rightBar();
-		        $bar->addField(GDT_Link::make('link_your_orders')->href(href('Payment', 'YourOrders')));
+		        $menu = GDT_Menu::make('menu_payment')->label('payment');
+		        $menu->addField(GDT_Link::make('link_your_orders')->href(href('Payment', 'YourOrders')));
+		        $bar->addField($menu);
 	    	}
 	    }
 	}
