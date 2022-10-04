@@ -25,7 +25,7 @@ class GDT_Money extends GDT_Decimal
 		return self::renderPrice($this->getValue());
 	}
 	
-	public static function renderPrice(float $price) : string
+	public static function renderPrice(?float $price) : string
 	{
 		return (!$price)  ? '---' :
 			sprintf('%s%.0'.self::$CURR_DIGITS.'f',
