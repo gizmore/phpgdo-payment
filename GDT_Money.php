@@ -25,10 +25,12 @@ class GDT_Money extends GDT_Decimal
 		return self::renderPrice($this->getValue());
 	}
 	
-	public static function renderPrice($price)
+	public static function renderPrice(float $price) : string
 	{
-		return $price === null ? '---' :
-		  sprintf('%s%.0'.self::$CURR_DIGITS.'f', self::$CURR, $price);
+		return (!$price)  ? '---' :
+			sprintf('%s%.0'.self::$CURR_DIGITS.'f',
+				self::$CURR,
+				round($price, self::$CURR_DIGITS));
 	}
 	
 }

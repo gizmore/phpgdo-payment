@@ -35,7 +35,7 @@ final class BillingMails
 			);
 			$mail->setBody(t('mail_body_payment_bill', $tVars));
 			$pdf = PaymentPDF::generate($user, $order);
-			$mail->addAttachmentFile($pdf->displayName(), $pdf->getPath());
+			$mail->addAttachmentFile($pdf->renderName(), $pdf->getPath());
 			$mail->sendToUser($user);
 		});
 	}
@@ -73,17 +73,17 @@ final class BillingMails
 		GDO_Language::withIso($user->getLangISO(), function() use ($user, $order) {
 			$mail = self::getMail($user);
 			$creator = $order->getCreator();
-			$mail->setSubject(tusr($user, 'mail_subj_payment_bill_paid_staff', [$creator->displayName(), $order->getID()]));
+			$mail->setSubject(tusr($user, 'mail_subj_payment_bill_paid_staff', [$creator->renderName(), $order->getID()]));
 			$tVars = array(
 				$user->renderUserName(),
-				$creator->displayName(),
+				$creator->renderName(),
 				$order->getOrderable()->getOrderTitle($user->getLangISO()),
 				$order->displayPrice(),
 				$order->getPaymentModule()->displayPaymentMethodName(),
 			);
 			$mail->setBody(tusr($user, 'mail_body_payment_bill_paid_staff', $tVars));
 			$pdf = PaymentPDF::generate($user, $order);
-			$mail->addAttachmentFile($pdf->displayName(), $pdf->getPath());
+			$mail->addAttachmentFile($pdf->renderName(), $pdf->getPath());
 			$mail->sendToUser($user);
 		});
 	}
@@ -100,7 +100,7 @@ final class BillingMails
 			);
 			$mail->setBody(t('mail_body_payment_bill_paid', $tVars));
 			$pdf = PaymentPDF::generate($user, $order);
-			$mail->addAttachmentFile($pdf->displayName(), $pdf->getPath());
+			$mail->addAttachmentFile($pdf->renderName(), $pdf->getPath());
 			$mail->sendToUser($user);
 		});
 	}
