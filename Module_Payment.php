@@ -80,7 +80,8 @@ final class Module_Payment extends GDO_Module
 	    	if (GDO_User::current()->isUser())
 	    	{
 		        $bar = GDT_Page::$INSTANCE->rightBar();
-		        $menu = GDT_Menu::make('menu_payment')->label('payment');
+		        $menu = GDT_Menu::make('menu_payment');
+		        $menu->label('payment')->vertical();
 		        $menu->addField(GDT_Link::make('link_your_orders')->href(href('Payment', 'YourOrders')));
 		        $bar->addField($menu);
 	    	}
