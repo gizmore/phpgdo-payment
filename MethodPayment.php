@@ -7,6 +7,12 @@ use GDO\UI\GDT_HTML;
 
 abstract class MethodPayment extends Method
 {
+	
+	public function getMethodTitle(): string
+	{
+		return t('payment');
+	}
+	
 	/**
 	 * @var GDO_Order
 	 */

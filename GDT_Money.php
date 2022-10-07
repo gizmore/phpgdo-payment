@@ -30,7 +30,7 @@ class GDT_Money extends GDT_Decimal
 		return (!$price)  ? '---' :
 			sprintf('%s%.0'.self::$CURR_DIGITS.'f',
 				self::$CURR,
-				round($price, self::$CURR_DIGITS));
+				$price);
 	}
 	
 }
