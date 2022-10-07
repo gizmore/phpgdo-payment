@@ -35,7 +35,7 @@ final class GDO_Order extends GDO
 {
 	public function gdoColumns() : array
 	{
-		return array(
+		return [
 			GDT_AutoInc::make('order_id'),
 			GDT_UInt::make('order_num')->notNull()->initial('0'),
 			GDT_CreatedBy::make('order_by'),
@@ -51,7 +51,7 @@ final class GDO_Order extends GDO
 			GDT_DateTime::make('order_paid')->writeable(false)->label('paid_at'),
 			GDT_DateTime::make('order_executed')->writeable(false)->label('executed_at'),
 			GDT_Serialize::make('order_item'),
-		);
+		];
 	}
 	
 	public function href_edit() { return href('Payment', 'Order', '&id='.$this->getID()); }

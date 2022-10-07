@@ -14,8 +14,8 @@ use GDO\Language\Trans;
  * Download a PDF bill.
  * 
  * @author gizmore
- * @version 6.10
- * @since 6.10
+ * @version 7.0.1
+ * @since 6.10.0
  * @see PaymentPDF
  */
 final class PDFBill extends Method
@@ -25,19 +25,16 @@ final class PDFBill extends Method
 		return t('btn_pdf_bill');
 	}
 	
-	/**
-	 * @return GDO_Order
-	 */
-	public function getOrder()
+	public function getOrder() : GDO_Order
 	{
 		return $this->gdoParameterValue('id');
 	}
 	
 	public function gdoParameters() : array
 	{
-		return array(
+		return [
 			GDT_Object::make('id')->notNull()->table(GDO_Order::table()),
-		);
+		];
 	}
 	
 	public function hasUserPermission(GDO_User $user)
