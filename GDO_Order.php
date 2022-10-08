@@ -60,8 +60,8 @@ final class GDO_Order extends GDO
 	public function href_success() { return $this->getOrderable()->getOrderSuccessURL(GDO_User::current()); }
 	public function href_pdf() { return href('Payment', 'PDFBill', '&id='.$this->getID()); }
 
-	public function redirectFailure() { return Website::redirectMessage($this->href_failure()); }
-	public function redirectSuccess() { return Website::redirectMessage($this->href_success()); }
+	public function redirectFailure() { return GDT_Redirect::toMessage($this->href_failure()); }
+	public function redirectSuccess() { return GDT_Redirect::toMessage($this->href_success()); }
 	
 	/**
 	 * @return GDO_Address
