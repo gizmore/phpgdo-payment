@@ -25,11 +25,11 @@ abstract class PaymentModule extends GDO_Module
 
 	public int $priority = 25;
 
-	public function initModule()
+	public function onModuleInit(): void
 	{
 		self::$paymentModules[$this->getName()] = $this;
 		self::$paymentModulesId[$this->getID()] = $this;
-		return parent::initModule();
+		parent::onModuleInit();
 	}
 	
 	public function getConfig() : array

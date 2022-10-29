@@ -13,10 +13,7 @@ abstract class MethodPayment extends Method
 		return t('payment');
 	}
 	
-	/**
-	 * @var GDO_Order
-	 */
-	private $order;
+	private GDO_Order $order;
 	
 	public function isShownInSitemap() : bool { return false; }
 	

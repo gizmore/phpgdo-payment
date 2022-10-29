@@ -10,26 +10,28 @@ use GDO\Session\GDO_Session;
 use GDO\UI\GDT_HTML;
 use GDO\Address\GDT_Address;
 use GDO\UI\GDT_Button;
+use GDO\Core\GDT_Hook;
 
 abstract class Payment_Order extends MethodForm
 {
 	/**
-	 * @return Orderable
+	 * @return 
 	 */
-	public abstract function getOrderable();
+	public abstract function getOrderable(): Orderable;
 	
-// 	public abstract function cancelOrder();
+	public abstract function onCancelOrder(): void;
 	
 	public function isUserRequired() : bool { return true; }
 	
 	public function execute()
 	{
-// 		if (isset($_REQUEST['cancel']))
-// 		{
-// 			GDT_Hook::callHook('CancelOrder');
-// // 			$this->cancelOrder();
-// 			return $this->message('msg_order_cancelled');
-// 		}
+		if (isset($this->inputs['cancel']))
+		{
+			$this->onCancelOrder();
+			GDT_Hook::callHook('CancelOrder');
+			GDO_Session::remove('gdo_orderable');
+			return $this->message('msg_order_cancelled');
+		}
 		return parent::execute();
 	}
 	
@@ -70,7 +72,7 @@ abstract class Payment_Order extends MethodForm
 				$form->addField($module->makePaymentButton());
 			}
 		}
-		$form->addField(GDT_Button::make('link_add_address')->href(href('Address', 'AddAddress', "&rb=".($_SERVER['REQUEST_URI']))));
+		$form->addField(GDT_Button::make('link_add_address')->href(href('Address', 'Add', "&_rb=".($_SERVER['REQUEST_URI']))));
 		return GDT_Response::makeWith(GDT_HTML::make()->var($orderable->renderOrderCard()))->addField(GDT_Response::makeWith($form));
 	}
 	

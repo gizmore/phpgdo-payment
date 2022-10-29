@@ -36,7 +36,7 @@ final class Module_Payment extends GDO_Module
 	public int $priority = 15;
 	public function getDependencies() : array
 	{
-		return ['Address', 'DOMPDF', 'Mail'];
+		return ['Address', 'TCPDF', 'Mail'];
 	}
 
 	public function href_administrate_module() : ?string { return href('Payment', 'Orders'); }

@@ -1,7 +1,6 @@
 <?php
 namespace GDO\Payment;
 
-use GDO\Core\Website;
 use GDO\Core\GDO;
 use GDO\Core\GDT_AutoInc;
 use GDO\Core\GDT_CreatedAt;
@@ -13,6 +12,7 @@ use GDO\Core\GDT_Serialize;
 use GDO\Core\GDT_String;
 use GDO\User\GDO_User;
 use GDO\Core\ModuleLoader;
+use GDO\UI\GDT_Redirect;
 use GDO\UI\GDT_Success;
 use GDO\Core\GDT_Decimal;
 use GDO\Core\GDT_UInt;
@@ -33,6 +33,11 @@ use GDO\Address\GDO_Address;
  */
 final class GDO_Order extends GDO
 {
+	public function isTestable(): bool
+	{
+		return false;
+	}
+	
 	public function gdoColumns() : array
 	{
 		return [

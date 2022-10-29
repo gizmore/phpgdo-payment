@@ -14,8 +14,8 @@ use GDO\Core\GDT_Serialize;
 use GDO\Session\GDO_Session;
 use GDO\Address\GDO_Address;
 use GDO\Util\Strings;
-use GDO\Core\Website;
 use GDO\Address\GDT_Address;
+use GDO\Core\GDT_String;
 
 /**
  * Your article has been selected.
@@ -24,39 +24,24 @@ use GDO\Address\GDT_Address;
  */
 final class Choose extends Method
 {
+	private GDO_User $user;
+	
+	private Orderable $orderable;
+	
+	private PaymentModule $paymentModule;
+	
+	private GDO_Order $order;
+
+	private GDO_Address $address;
+	
 	public function isShownInSitemap() : bool { return false; }
 	
 	public function isTrivial() : bool { return false; }
 	
 	/**
-	 * @var GDO_User
-	 */
-	private $user;
-	
-	/**
-	 * @var Orderable
-	 */
-	private $orderable;
-	
-	/**
-	 * @var PaymentModule
-	 */
-	private $paymentModule;
-	
-	/**
-	 * @var GDO_Order
-	 */
-	private $order;
-
-	/**
-	 * @var GDO_Address
-	 */
-	private $address;
-	
-	/**
 	 * @return Orderable|GDO
 	 */
-	public function getOrderable()
+	public function getOrderable(): Orderable
 	{
 		return GDO_Session::get('gdo_orderable');
 	}
@@ -68,28 +53,28 @@ final class Choose extends Method
 	    ];
 	}
 	
-	public function onMethodInit()
+	public function onMethodInit(): void
 	{
 		$this->address = $this->gdoParameterValue('order_address');
 		
-		foreach (array_keys($_REQUEST) as $k)
+		foreach (array_keys($this->getInputs()) as $k)
 		{
 			if (str_starts_with($k, 'buy_'))
 			{
-				$_REQUEST['payment'] = Strings::substrFrom($k, 'buy_');
+				$this->inputs['payment'] = Strings::substrFrom($k, 'buy_');
 			}
 		}
 	}
 	
 	public function execute()
 	{
-		$moduleName = Common::getRequestString('payment');
+		$moduleName = $this->inputs['payment'];
 		if (!($this->paymentModule = ModuleLoader::instance()->getModule($moduleName)))
 		{
 			return $this->error('err_module', [html($moduleName)]);
 		}
 		
-		if (Common::getFormString('order_module'))
+		if (isset($this->inputs['order_module']))
 		{
 			if (GDO_Session::get('gdo_order'))
 			{
