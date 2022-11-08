@@ -173,4 +173,13 @@ final class GDO_Order extends GDO
 		$subselect = "SELECT ( MAX(order_num) + 1 ) FROM gdo_order";
 		$this->updateQuery()->set("order_num = ( $subselect )")->exec();
 	}
+
+	##############
+	### Static ###
+	##############
+	public static function getByToken(string $token): self
+	{
+		return self::getBy('order_xtoken', $token);
+	}
+
 }
