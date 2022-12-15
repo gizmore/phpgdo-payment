@@ -7,6 +7,7 @@ use GDO\File\GDO_File;
 use GDO\Address\Module_Address;
 use GDO\Language\Trans;
 use GDO\Language\GDO_Language;
+use GDO\Util\Localized;
 
 class PaymentPDF extends GDOTCPDF
 {
@@ -57,7 +58,7 @@ class PaymentPDF extends GDOTCPDF
 	public static function generate(GDO_User $user, GDO_Order $order, $iso = null)
 	{
 		$iso = $iso ? $iso : Trans::$ISO;
-		return GDO_Language::withIso($iso,
+		return Localized::withIso($iso,
 			function () use ($user, $order, $iso)
 			{
 				return self::generateB($user, $order, $iso);

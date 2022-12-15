@@ -36,8 +36,9 @@ final class Orders extends MethodQueryTable
 		return [
 		    GDT_EditButton::make(),
 		    $gdo->gdoColumn('order_id'),
-		    $gdo->gdoColumn('order_num')->label('order_num_short'),
-		    $add->gdoColumn('address_vat'),
+			$gdo->gdoColumn('order_num')->label('order_num_short'),
+			$gdo->gdoColumn('order_xtoken'),
+			$add->gdoColumn('address_vat'),
 		    $add->gdoColumn('address_company'),
 		    $add->gdoColumn('address_name'),
 		    $gdo->gdoColumn('order_by'),

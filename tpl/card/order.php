@@ -12,8 +12,8 @@ $payment = $gdo->getPaymentModule();
 $o = $gdo->getOrderable();
 
 $card = GDT_Card::make();
-$card->title(t('card_title_order'));
-$card->subtitle($gdo->getTitle());
+$card->title('card_title_order');
+$card->subtitleRaw($gdo->getTitle());
 
 $card->addFields(
 	GDT_Money::make('price')->value($o->getOrderPrice()),

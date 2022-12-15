@@ -1,5 +1,6 @@
 <?php
 return array(
+'module_payment' => 'Zahlungsvorgang',
 'order_title' => 'Bestelltitel',
 'paid_at' => 'Bezahlt am',
 'executed_at' => 'Ausgeführt am',

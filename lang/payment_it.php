@@ -1,5 +1,6 @@
 <?php
 return array(
+'module_payment' => 'Pagamento',
 'order_title' => 'Titolo ordianto',
 'paid_at' => 'Pagato il',
 'executed_at' => 'effetuato il',

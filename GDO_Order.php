@@ -18,6 +18,7 @@ use GDO\Core\GDT_Decimal;
 use GDO\Core\GDT_UInt;
 use GDO\Address\GDT_Address;
 use GDO\Address\GDO_Address;
+use GDO\Core\Website;
 /**
  * Serializes an orderable.
  * Stores price and item description.
@@ -164,8 +165,9 @@ final class GDO_Order extends GDO
 		$this->saveVar('order_executed', Time::getDate());
 		$this->saveValue('order_item', $orderable);
 		$this->updateOrderNum();
-		
-		return GDT_Success::make()->text('msg_order_execute')->addField($response)->addField($this->redirectSuccess());
+		Website::message(t('payment'), 'msg_order_execute');
+		GDT_Redirect::to($this->redirectSuccess());
+// 		return GDT_Success::make()->text('msg_order_execute')->addField($response)->addField($this->redirectSuccess());
 	}
 	
 	private function updateOrderNum()

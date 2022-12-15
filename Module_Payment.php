@@ -85,6 +85,14 @@ final class Module_Payment extends GDO_Module
 		        $menu->addField(GDT_Link::make('link_your_orders')->href(href('Payment', 'YourOrders')));
 		        $bar->addField($menu);
 	    	}
+	    	if (GDO_User::current()->isStaff())
+	    	{
+	    		$page = GDT_Page::instance();
+	    		$rb = $page->rightBar();
+	    		$menu = $rb->getField('menu_admin');
+	    		$menu->addField(GDT_Link::make('link_orders')->href(href('Payment', 'Orders')));
+	    		
+	    	}
 	    }
 	}
 	

@@ -1,5 +1,6 @@
 <?php
 return array(
+'module_payment' => 'Payment',
 'order_title' => 'Order title',
 'paid_at' => 'Paid at',
 'executed_at' => 'Executed at',
@@ -21,7 +22,7 @@ return array(
 #############################################################
 'link_your_orders' => 'Your orders',
 'link_orders' => 'Orders',
-'btn_order' => 'Bestellen',
+'btn_order' => 'Order',
 'err_order_pending' => 'Your payment is still pending.',
 #############################################################
 	'vat' => 'VAT',

@@ -3,6 +3,7 @@ namespace GDO\Payment;
 
 use GDO\Language\GDO_Language;
 use GDO\User\GDO_User;
+use GDO\Util\Localized;
 use GDO\Mail\Mail;
 use GDO\Language\Trans;
 
@@ -22,7 +23,7 @@ final class BillingMails
 	public static function sendBillMail(GDO_Order $order)
 	{
 		$user = $order->getCreator();
-		GDO_Language::withIso($user->getLangISO(), function() use ($user, $order) {
+		Localized::forUser($user, function() use ($user, $order) {
 			$o = $order->getOrderable();
 			$mail = self::getMail($user);
 			$mail->setSubject(t('mail_subj_payment_bill', [sitename(), $o->getOrderTitle(Trans::$ISO)]));

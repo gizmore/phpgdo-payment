@@ -48,25 +48,14 @@ final class Order extends MethodForm
 		$address = $order->getAddress();
 		$form->addField(GDT_HTML::make()->var($order->getOrderable()->renderCard()));
 		$form->addField(GDT_Divider::make()->label('div_order_section'));
-		$form->addFields($order->gdoColumnsExcept('order_item', 'order_title'));
-		$form->addFields($address->gdoColumnsExcept('address_id'));
+		$form->addFields(...$order->gdoColumnsExcept('order_item', 'order_title'));
+		$form->addFields(...$address->gdoColumnsExcept('address_id'));
 		$form->addField(GDT_AntiCSRF::make());
-		$form->actions()->addField(GDT_Submit::make('btn_edit'));
-		$form->actions()->addField(GDT_Submit::make('btn_execute')->disabled($order->isPaid()));
+		$form->actions()->addField(GDT_Submit::make('btn_edit')->onclick([$this, 'onEdit']));
+		$form->actions()->addField(GDT_Submit::make('btn_execute')->disabled($order->isPaid())->onclick([$this, 'onExecute']));
 	}
 
-	public function onSubmit_btn_execute()
-	{
-		$order = $this->getOrder();
-		$order->saveVars([
-			'order_paid' => Time::getDate(),
-			'order_price_paid' => $order->getPrice(),
-		]);
-		Module_Payment::instance()->onExecuteOrder($order->getPaymentModule(), $order);
-		return $this->message('msg_order_execute')->addField($this->renderPage());
-	}
-
-	public function onSubmit_btn_edit()
+	public function onEdit()
 	{
 		$form = $this->getForm();
 		$order = $this->getOrder();
@@ -77,6 +66,17 @@ final class Order extends MethodForm
 		}
 		$this->resetForm();
 		return $this->message('msg_order_edited')->addField($this->renderPage());
+	}
+	
+	public function onExecute()
+	{
+		$order = $this->getOrder();
+		$order->saveVars([
+			'order_paid' => Time::getDate(),
+			'order_price_paid' => $order->getPrice(),
+		]);
+		Module_Payment::instance()->onExecuteOrder($order->getPaymentModule(), $order);
+		return $this->message('msg_order_execute')->addField($this->renderPage());
 	}
 	
 }
