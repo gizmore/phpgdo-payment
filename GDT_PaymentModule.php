@@ -13,7 +13,7 @@ class GDT_PaymentModule extends GDT_ObjectSelect
 		$this->table(GDO_Module::table());
 	}
 	
-	public function getChoices()
+	public function getChoices(): array
 	{
 		return  PaymentModule::allPaymentModules();
 	}
