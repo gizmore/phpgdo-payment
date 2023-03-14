@@ -7,7 +7,12 @@ use GDO\UI\GDT_HTML;
 
 abstract class MethodPayment extends Method
 {
-	
+
+	public function isTrivial(): bool
+	{
+		return false;
+	}
+
 	public function getMethodTitle(): string
 	{
 		return t('payment');
