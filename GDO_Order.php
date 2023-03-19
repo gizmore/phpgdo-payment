@@ -179,7 +179,7 @@ final class GDO_Order extends GDO
 	##############
 	### Static ###
 	##############
-	public static function getByToken(string $token): self
+	public static function getByToken(string $token): static
 	{
 		return self::getBy('order_xtoken', $token);
 	}
