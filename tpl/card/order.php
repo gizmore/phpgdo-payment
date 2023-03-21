@@ -1,9 +1,11 @@
 <?php
-use GDO\Payment\GDT_Money;
-use GDO\Payment\GDO_Order;
-use GDO\UI\GDT_Card;
+
 use GDO\Core\GDT_String;
+use GDO\Payment\GDO_Order;
+use GDO\Payment\GDT_Money;
 use GDO\Payment\Module_Payment;
+use GDO\UI\GDT_Card;
+
 /**
  * @var $gdo GDO_Order
  */

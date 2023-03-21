@@ -1,41 +1,41 @@
 <?php
-return array(
-'module_payment' => 'Zahlungsvorgang',
-'order_title' => 'Bestelltitel',
-'paid_at' => 'Bezahlt am',
-'executed_at' => 'Ausgeführt am',
+return [
+	'module_payment' => 'Zahlungsvorgang',
+	'order_title' => 'Bestelltitel',
+	'paid_at' => 'Bezahlt am',
+	'executed_at' => 'Ausgeführt am',
 #############################################################
-'price' => 'Preis',
+	'price' => 'Preis',
 #############################################################
-'err_order' => 'Deine Bestellung konnte nicht gefunden werden.',
-'err_orderable' => 'Bitte wählen Sie zuerst einen Artikel aus.',
+	'err_order' => 'Deine Bestellung konnte nicht gefunden werden.',
+	'err_orderable' => 'Bitte wählen Sie zuerst einen Artikel aus.',
 #############################################################
-'card_title_order' => 'Ihre Bestellung',
-'payment' => 'Zahlungsweise',
-'payment_fee' => 'Gebühr(%)',
-'total' => 'Gesamtsumme',
+	'card_title_order' => 'Ihre Bestellung',
+	'payment' => 'Zahlungsweise',
+	'payment_fee' => 'Gebühr(%)',
+	'total' => 'Gesamtsumme',
 #############################################################
-'msg_order_execute' => 'Ihre Bestellung wurde erfolgreich ausgeführt.',
+	'msg_order_execute' => 'Ihre Bestellung wurde erfolgreich ausgeführt.',
 #############################################################
-'mt_payment_order' => 'Bestellung',
-'btn_execute' => 'Ausführen',
+	'mt_payment_order' => 'Bestellung',
+	'btn_execute' => 'Ausführen',
 #############################################################
-'link_your_orders' => 'Ihre Bestellungen',
-'link_orders' => 'Bestellungen',
-'btn_order' => 'Bestellen',
-'err_order_pending' => 'Ihre Zahlung ist weiterhin ausstehend.',
+	'link_your_orders' => 'Ihre Bestellungen',
+	'link_orders' => 'Bestellungen',
+	'btn_order' => 'Bestellen',
+	'err_order_pending' => 'Ihre Zahlung ist weiterhin ausstehend.',
 #############################################################
-'vat' => 'Steuernummer',
-'btn_pdf_bill' => 'Rechnung',
-'pdfbill_filename' => 'Rechnung_%s_%s_%s.pdf',
-'pdf_subject_payment' => 'Zahlungsvorgang',
-'pdf_subtitle_paid' => 'Abschlussrechnung',
-'pdf_subtitle_unpaid' => 'Vorläufige Rechnung',
-'billing_mail_sender_name' => 'Rechnungen %s',
-'billing_mail_reciver_name' => 'Rechnungsstelle %s',
+	'vat' => 'Steuernummer',
+	'btn_pdf_bill' => 'Rechnung',
+	'pdfbill_filename' => 'Rechnung_%s_%s_%s.pdf',
+	'pdf_subject_payment' => 'Zahlungsvorgang',
+	'pdf_subtitle_paid' => 'Abschlussrechnung',
+	'pdf_subtitle_unpaid' => 'Vorläufige Rechnung',
+	'billing_mail_sender_name' => 'Rechnungen %s',
+	'billing_mail_reciver_name' => 'Rechnungsstelle %s',
 #####################################################
-'mail_subj_payment_bill' => '[%s] Rechnung - %s',
-'mail_body_payment_bill' => '
+	'mail_subj_payment_bill' => '[%s] Rechnung - %s',
+	'mail_body_payment_bill' => '
 Hallo %s,
 	
 Sie haben eine Bestellung auf %s aufgegeben.
@@ -59,8 +59,8 @@ Viele Grüße
 Das %2$s Team
 ',
 #####################################################
-'mail_subj_payment_bill_paid' => '[%s] Rechnung - %s',
-'mail_body_payment_bill_paid' => '
+	'mail_subj_payment_bill_paid' => '[%s] Rechnung - %s',
+	'mail_body_payment_bill_paid' => '
 Hallo %s,
 
 Sie haben Ihre Rechnung über %s auf %s bezahlt.
@@ -73,8 +73,8 @@ Viele Grüße
 Das %3$s Team
 ',
 #####################################################
-'mail_subj_payment_bill_paid_staff' => 'Rechnung - %s - %s',
-'mail_body_payment_bill_paid_staff' => '
+	'mail_subj_payment_bill_paid_staff' => 'Rechnung - %s - %s',
+	'mail_body_payment_bill_paid_staff' => '
 Hallo %s,
 
 Eine Rechnung wurde bezahlt.
@@ -90,33 +90,33 @@ Zahlungsmethode: %s
 Im Anhang die Rechnung für die Unterlagen.
 ',
 #####################################################
-'article' => 'Artikel',
-'ordered_at' => 'Bestellt am',
-'financial_office' => 'Finanzamt',
-'pdfbill_company_underline' => '<u>%s — %s — %s %s</u>',
-'pdfbill_ordered_at' => 'Rechnungsdatum: %s',
-'pdfbill_executed_at' => 'Leistungsdatum: %s',
-'pdfbill_customer' => 'Kundennummer: %s',
-'pdfbill_number' => 'Rechnungsnummer: %s',
-'pdfbill_number_hint' => 'Bitte bei Zahlungen und Schriftverkehr stets angeben.',
-'pdfbill_pay_until' => 'Bitte begleichen Sie den Rechnungsbetrag bis zum %s.',
-'pdfbill_payment' => 'Zahlungsweise',
-'pdforder_sum_netto' => 'Summe netto',
-'pdforder_sum_tax' => 'zzgl. %s%% MwSt.',
-'pdforder_sum_brutto' => 'Summe brutto',
+	'article' => 'Artikel',
+	'ordered_at' => 'Bestellt am',
+	'financial_office' => 'Finanzamt',
+	'pdfbill_company_underline' => '<u>%s — %s — %s %s</u>',
+	'pdfbill_ordered_at' => 'Rechnungsdatum: %s',
+	'pdfbill_executed_at' => 'Leistungsdatum: %s',
+	'pdfbill_customer' => 'Kundennummer: %s',
+	'pdfbill_number' => 'Rechnungsnummer: %s',
+	'pdfbill_number_hint' => 'Bitte bei Zahlungen und Schriftverkehr stets angeben.',
+	'pdfbill_pay_until' => 'Bitte begleichen Sie den Rechnungsbetrag bis zum %s.',
+	'pdfbill_payment' => 'Zahlungsweise',
+	'pdforder_sum_netto' => 'Summe netto',
+	'pdforder_sum_tax' => 'zzgl. %s%% MwSt.',
+	'pdforder_sum_brutto' => 'Summe brutto',
 ######################################################
-'order_num' => 'Rechnungsnummer',
-'order_num_short' => 'R.Nr.',
-'order_xtoken' => 'Rechnungsverweis',
-'order_address' => 'Rechnungsadresse',
-'order_price_paid' => 'Bereits gezahlt',
-'order_needs_address_first' => 'Bitte erstellen Sie zuerst eine Rechnungsadresse',
-'div_order_section' => 'Bestelldaten',
-'msg_order_edited' => 'Die Bestellung wurde bearbeitet.',
-'purchase' => 'Kaufen',
-'err_order_cancel' => 'Sie können diese Bestellung nicht mehr stornieren.',
+	'order_num' => 'Rechnungsnummer',
+	'order_num_short' => 'R.Nr.',
+	'order_xtoken' => 'Rechnungsverweis',
+	'order_address' => 'Rechnungsadresse',
+	'order_price_paid' => 'Bereits gezahlt',
+	'order_needs_address_first' => 'Bitte erstellen Sie zuerst eine Rechnungsadresse',
+	'div_order_section' => 'Bestelldaten',
+	'msg_order_edited' => 'Die Bestellung wurde bearbeitet.',
+	'purchase' => 'Kaufen',
+	'err_order_cancel' => 'Sie können diese Bestellung nicht mehr stornieren.',
 #v6.10.6
-'list_payment_yourorders' => 'Ihre %s Bestellungen',
-'list_address_ownaddresses' => 'Ihre %s Adressen',
-'view_order' => 'Bestellung ansehen',
-);
+	'list_payment_yourorders' => 'Ihre %s Bestellungen',
+	'list_address_ownaddresses' => 'Ihre %s Adressen',
+	'view_order' => 'Bestellung ansehen',
+];

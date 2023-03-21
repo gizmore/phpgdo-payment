@@ -1,34 +1,35 @@
 <?php
 namespace GDO\Payment\Method;
 
-use GDO\Payment\GDO_Order;
-use GDO\Table\MethodQueryTable;
-use GDO\UI\GDT_Button;
-use GDO\User\GDO_User;
 use GDO\Core\GDO;
 use GDO\Core\GDT_Response;
 use GDO\DB\Query;
-use GDO\UI\GDT_Link;
+use GDO\Payment\GDO_Order;
+use GDO\Table\MethodQueryTable;
 use GDO\UI\GDT_Bar;
+use GDO\UI\GDT_Button;
+use GDO\UI\GDT_Link;
+use GDO\User\GDO_User;
 
 final class YourOrders extends MethodQueryTable
 {
-	public function isUserRequired() : bool { return true; }
-	
-	public function gdoTable() : GDO
+
+	public function isUserRequired(): bool { return true; }
+
+	public function gdoTable(): GDO
 	{
-	    return GDO_Order::table();
+		return GDO_Order::table();
 	}
-	
-	public function getQuery() : Query
+
+	public function getQuery(): Query
 	{
-		return GDO_Order::table()->select()->where('order_by='.GDO_User::current()->getID());
+		return GDO_Order::table()->select()->where('order_by=' . GDO_User::current()->getID());
 	}
-	
-	public function gdoHeaders() : array
+
+	public function gdoHeaders(): array
 	{
 		$gdo = GDO_Order::table();
-		return array(
+		return [
 // 			GDT_EditButton::make(),
 			$gdo->gdoColumn('order_id'),
 			GDT_Button::make('pdf')->label('btn_pdf_bill'),
@@ -38,18 +39,18 @@ final class YourOrders extends MethodQueryTable
 			$gdo->gdoColumn('order_paid'),
 			$gdo->gdoColumn('order_executed'),
 			GDT_Button::make('view'),
-		);
+		];
 	}
-	
+
 	public function execute()
 	{
 		return GDT_Response::makeWith(
 			GDT_Bar::makeWith(
 				GDT_Link::make('link_add_address')->href(href('Address', 'AddAddress')),
 				GDT_Link::make('link_own_addresses')->href(href('Address', 'OwnAddresses')),
-				
+
 			)->horizontal()
 		)->addField(parent::execute());
 	}
-	
+
 }

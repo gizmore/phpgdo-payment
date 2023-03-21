@@ -1,12 +1,11 @@
 <?php
 namespace GDO\Payment;
 
+use GDO\Address\Module_Address;
+use GDO\File\GDO_File;
+use GDO\Language\Trans;
 use GDO\TCPDF\GDOTCPDF;
 use GDO\User\GDO_User;
-use GDO\File\GDO_File;
-use GDO\Address\Module_Address;
-use GDO\Language\Trans;
-use GDO\Language\GDO_Language;
 use GDO\Util\Localized;
 
 class PaymentPDF extends GDOTCPDF
@@ -26,33 +25,11 @@ class PaymentPDF extends GDOTCPDF
 		$this->order = $order;
 	}
 
-	public function getDefaultFilename()
-	{
-		$o = $this->order;
-		$tVars = array(
-			sitename(),
-			$o->getID(),
-			$o->getOrderable()->getOrderTitle($this->iso),
-		);
-		return tiso($this->iso, 'pdfbill_filename', $tVars);
-	}
-
-	public static function getCompanyTinyLine()
-	{
-		$mod = Module_Address::instance();
-		$tVars = array(
-			Module_Payment::instance()->cfgCompanyName(),
-			$mod->cfgStreet(),
-			$mod->cfgZIP(),
-			$mod->cfgCity(),
-		);
-		return t('pdfbill_company_underline', $tVars);
-	}
-
 	/**
 	 *
 	 * @param GDO_User $user
 	 * @param GDO_Order $order
+	 *
 	 * @return GDO_File
 	 */
 	public static function generate(GDO_User $user, GDO_Order $order, $iso = null)
@@ -104,16 +81,16 @@ class PaymentPDF extends GDOTCPDF
 		$pdf->SetY($y);
 		$pdf->Address($ourAddress, 'R', false);
 		$pdf->paragraph(t('pdfbill_ordered_at', [
-			$order->displayOrderedAt()
+			$order->displayOrderedAt(),
 		]), 'R');
 		if ($order->isExecuted())
 		{
 			$pdf->paragraph(t('pdfbill_executed_at', [
-				$order->displayExecutedAt()
+				$order->displayExecutedAt(),
 			]), 'R');
 		}
 		$pdf->paragraph(t('pdfbill_customer', [
-			$creator->getID() + 1000
+			$creator->getID() + 1000,
 		]), 'R');
 
 		$pdf->SetY($y2);
@@ -121,7 +98,7 @@ class PaymentPDF extends GDOTCPDF
 		# Title and billnr
 		$pdf->largeParagraph($pdf->subtitle);
 		$pdf->paragraph(t('pdfbill_number', [
-			html($order->getXToken())
+			html($order->getXToken()),
 		]));
 		$pdf->smallParagraph(t('pdfbill_number_hint'));
 
@@ -140,13 +117,36 @@ class PaymentPDF extends GDOTCPDF
 
 		# Last words
 		$pdf->paragraph(t('pdfbill_pay_until', [
-			$order->displayPayMaxDate()
+			$order->displayPayMaxDate(),
 		]));
 
 		# Write file
 		$path = $pdf->tempPath();
 		$pdf->Output($path, 'F');
 		return GDO_File::fromPath($pdf->getDefaultFilename(), $path);
+	}
+
+	public function getDefaultFilename()
+	{
+		$o = $this->order;
+		$tVars = [
+			sitename(),
+			$o->getID(),
+			$o->getOrderable()->getOrderTitle($this->iso),
+		];
+		return tiso($this->iso, 'pdfbill_filename', $tVars);
+	}
+
+	public static function getCompanyTinyLine()
+	{
+		$mod = Module_Address::instance();
+		$tVars = [
+			Module_Payment::instance()->cfgCompanyName(),
+			$mod->cfgStreet(),
+			$mod->cfgZIP(),
+			$mod->cfgCity(),
+		];
+		return t('pdfbill_company_underline', $tVars);
 	}
 
 }

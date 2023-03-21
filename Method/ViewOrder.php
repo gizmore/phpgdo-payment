@@ -1,34 +1,27 @@
 <?php
 namespace GDO\Payment\Method;
 
-use GDO\Core\Method;
-use GDO\User\GDO_User;
-use GDO\Payment\GDO_Order;
 use GDO\Core\GDT_Object;
+use GDO\Core\Method;
+use GDO\Payment\GDO_Order;
+use GDO\User\GDO_User;
 
 final class ViewOrder extends Method
 {
-	public function getMethodTitle() : string
+
+	public function getMethodTitle(): string
 	{
 		return t('view_order');
 	}
-	
-	public function gdoParameters() : array
+
+	public function gdoParameters(): array
 	{
-		return array(
+		return [
 			GDT_Object::make('id')->table(GDO_Order::table())->notNull(),
-		);
+		];
 	}
-	
-	/**
-	 * @return GDO_Order
-	 */
-	public function getOrder()
-	{
-		return $this->gdoParameterValue('id');
-	}
-	
-	public function hasPermission(GDO_User $user) : bool
+
+	public function hasPermission(GDO_User $user): bool
 	{
 		if ($order = $this->getOrder())
 		{
@@ -36,14 +29,22 @@ final class ViewOrder extends Method
 		}
 		return $this->error('err_permission_required');
 	}
-	
+
+	/**
+	 * @return GDO_Order
+	 */
+	public function getOrder()
+	{
+		return $this->gdoParameterValue('id');
+	}
+
 	public function execute()
 	{
-		$tVars = array(
+		$tVars = [
 			'order' => $this->getOrder(),
-		);
+		];
 		return $this->templatePHP('view_order.php', $tVars);
 	}
 
-	
+
 }

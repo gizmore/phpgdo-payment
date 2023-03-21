@@ -1,12 +1,13 @@
 <?php
+
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Hidden;
 use GDO\Payment\GDO_Order;
 use GDO\Payment\Orderable;
 use GDO\Payment\PaymentModule;
 use GDO\UI\GDT_Bar;
 use GDO\User\GDO_User;
-use GDO\Form\GDT_Form;
-use GDO\Form\GDT_AntiCSRF;
-use GDO\Form\GDT_Hidden;
 
 /**
  * @var $user GDO_User

@@ -1,62 +1,54 @@
 <?php
 namespace GDO\Payment\Method;
 
-use GDO\Core\Method;
+use GDO\Address\GDO_Address;
+use GDO\Address\GDT_Address;
 use GDO\Core\GDO;
+use GDO\Core\GDT_Serialize;
+use GDO\Core\Method;
+use GDO\Core\ModuleLoader;
 use GDO\Language\Trans;
 use GDO\Payment\GDO_Order;
 use GDO\Payment\Orderable;
 use GDO\Payment\PaymentModule;
-use GDO\User\GDO_User;
-use GDO\Util\Common;
-use GDO\Core\ModuleLoader;
-use GDO\Core\GDT_Serialize;
 use GDO\Session\GDO_Session;
-use GDO\Address\GDO_Address;
+use GDO\User\GDO_User;
 use GDO\Util\Strings;
-use GDO\Address\GDT_Address;
-use GDO\Core\GDT_String;
 
 /**
  * Your article has been selected.
  * Step 1 – Choose a payment processor
+ *
  * @author gizmore
  */
 final class Choose extends Method
 {
+
 	private GDO_User $user;
-	
+
 	private Orderable $orderable;
-	
+
 	private PaymentModule $paymentModule;
-	
+
 	private GDO_Order $order;
 
 	private GDO_Address $address;
-	
-	public function isShownInSitemap() : bool { return false; }
-	
-	public function isTrivial() : bool { return false; }
-	
-	/**
-	 * @return Orderable|GDO
-	 */
-	public function getOrderable(): Orderable
+
+	public function isShownInSitemap(): bool { return false; }
+
+	public function isTrivial(): bool { return false; }
+
+	public function gdoParameters(): array
 	{
-		return GDO_Session::get('gdo_orderable');
+		return [
+			GDT_Address::make('order_address')->onlyOwn()->notNull(),
+		];
 	}
-	
-	public function gdoParameters() : array
-	{
-	    return [
-	        GDT_Address::make('order_address')->onlyOwn()->notNull(),
-	    ];
-	}
-	
+
 	public function onMethodInit(): void
 	{
 		$this->address = $this->gdoParameterValue('order_address');
-		
+
 		foreach (array_keys($this->getInputs()) as $k)
 		{
 			if (str_starts_with($k, 'buy_'))
@@ -65,7 +57,7 @@ final class Choose extends Method
 			}
 		}
 	}
-	
+
 	public function execute()
 	{
 		$moduleName = $this->inputs['payment'];
@@ -73,7 +65,7 @@ final class Choose extends Method
 		{
 			return $this->error('err_module', [html($moduleName)]);
 		}
-		
+
 		if (isset($this->inputs['order_module']))
 		{
 			if (GDO_Session::get('gdo_order'))
@@ -83,12 +75,12 @@ final class Choose extends Method
 		}
 
 		$this->user = GDO_User::current();
-		
+
 		if (!($this->orderable = $this->getOrderable()))
 		{
 			return $this->error('err_orderable');
 		}
-		
+
 		$this->order = GDO_Order::blank([
 			'order_title_en' => $this->orderable->getOrderTitle('en'),
 			'order_title' => $this->orderable->getOrderTitle(Trans::$ISO),
@@ -100,15 +92,23 @@ final class Choose extends Method
 		]);
 
 		GDO_Session::set('gdo_order', $this->order);
-		
+
 		$tVars = [
 			'user' => $this->user,
 			'orderable' => $this->orderable,
 			'payment' => $this->paymentModule,
 			'order' => $this->order,
 		];
-		
+
 		return $this->templatePHP('choose.php', $tVars);
 	}
-	
+
+	/**
+	 * @return Orderable|GDO
+	 */
+	public function getOrderable(): Orderable
+	{
+		return GDO_Session::get('gdo_orderable');
+	}
+
 }

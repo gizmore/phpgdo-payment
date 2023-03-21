@@ -8,6 +8,8 @@ use GDO\UI\GDT_HTML;
 abstract class MethodPayment extends Method
 {
 
+	private ?GDO_Order $order = null;
+
 	public function isTrivial(): bool
 	{
 		return false;
@@ -17,26 +19,10 @@ abstract class MethodPayment extends Method
 	{
 		return t('payment');
 	}
-	
-	private ?GDO_Order $order = null;
-	
-	public function isShownInSitemap() : bool { return false; }
-	
-	public function isAlwaysTransactional() : bool { return true; }
-	
-	/**
-	 * @return GDO_Order
-	 */
-	public function getOrder()
-	{
-		return GDO_Session::get('gdo_order');
-	}
-	
-	public function setOrder(GDO_Order $order)
-	{
-		GDO_Session::set('gdo_order', $order);
-		$this->order = $order;
-	}
+
+	public function isShownInSitemap(): bool { return false; }
+
+	public function isAlwaysTransactional(): bool { return true; }
 
 	/**
 	 * @return GDO_Order
@@ -56,10 +42,24 @@ abstract class MethodPayment extends Method
 		}
 		return $this->order;
 	}
-	
+
+	/**
+	 * @return GDO_Order
+	 */
+	public function getOrder()
+	{
+		return GDO_Session::get('gdo_order');
+	}
+
+	public function setOrder(GDO_Order $order)
+	{
+		GDO_Session::set('gdo_order', $order);
+		$this->order = $order;
+	}
+
 	public function renderOrder(GDO_Order $order)
 	{
 		return GDT_HTML::make()->var($order->renderCard());
 	}
-	
+
 }
