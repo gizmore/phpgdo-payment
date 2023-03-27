@@ -2,6 +2,7 @@
 namespace GDO\Payment\Method;
 
 use GDO\Core\GDO;
+use GDO\Core\GDT;
 use GDO\Core\GDT_Response;
 use GDO\DB\Query;
 use GDO\Payment\GDO_Order;
@@ -42,7 +43,7 @@ final class YourOrders extends MethodQueryTable
 		];
 	}
 
-	public function execute()
+	public function execute(): GDT
 	{
 		return GDT_Response::makeWith(
 			GDT_Bar::makeWith(

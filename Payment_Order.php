@@ -4,6 +4,7 @@ namespace GDO\Payment;
 use GDO\Address\GDT_Address;
 use GDO\Core\GDO;
 use GDO\Core\GDO_Error;
+use GDO\Core\GDT;
 use GDO\Core\GDT_Hook;
 use GDO\Core\GDT_Response;
 use GDO\Form\GDT_Form;
@@ -17,7 +18,7 @@ abstract class Payment_Order extends MethodForm
 
 	public function isUserRequired(): bool { return true; }
 
-	public function execute()
+	public function execute(): GDT
 	{
 		if (isset($this->inputs['cancel']))
 		{
@@ -31,7 +32,7 @@ abstract class Payment_Order extends MethodForm
 
 	abstract public function onCancelOrder(): void;
 
-	public function formValidated(GDT_Form $form)
+	public function formValidated(GDT_Form $form): GDT
 	{
 		return $this->initOrderable($form);
 	}

@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Payment\Method;
 
+use GDO\Core\GDT;
 use GDO\Core\GDT_Object;
 use GDO\Core\Method;
 use GDO\Payment\GDO_Order;
@@ -38,7 +39,7 @@ final class ViewOrder extends Method
 		return $this->gdoParameterValue('id');
 	}
 
-	public function execute()
+	public function execute(): GDT
 	{
 		$tVars = [
 			'order' => $this->getOrder(),

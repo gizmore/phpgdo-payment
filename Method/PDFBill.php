@@ -2,7 +2,9 @@
 namespace GDO\Payment\Method;
 
 use Exception;
+use GDO\Core\GDT;
 use GDO\Core\GDT_Object;
+use GDO\Core\GDT_Response;
 use GDO\Core\Method;
 use GDO\Core\Website;
 use GDO\Language\Trans;
@@ -34,7 +36,7 @@ final class PDFBill extends Method
 		];
 	}
 
-	public function execute()
+	public function execute(): GDT
 	{
 		$order = $this->getOrder();
 
@@ -46,6 +48,8 @@ final class PDFBill extends Method
 		}
 
 		Stream::serve($file, '', false);
+
+		return GDT_Response::make();
 	}
 
 	public function getOrder(): GDO_Order

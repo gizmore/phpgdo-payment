@@ -4,6 +4,7 @@ namespace GDO\Payment\Method;
 use GDO\Address\GDO_Address;
 use GDO\Address\GDT_Address;
 use GDO\Core\GDO;
+use GDO\Core\GDT;
 use GDO\Core\GDT_Serialize;
 use GDO\Core\Method;
 use GDO\Core\ModuleLoader;
@@ -45,7 +46,7 @@ final class Choose extends Method
 		];
 	}
 
-	public function onMethodInit(): void
+	public function onMethodInit(): ?GDT
 	{
 		$this->address = $this->gdoParameterValue('order_address');
 
@@ -56,9 +57,10 @@ final class Choose extends Method
 				$this->inputs['payment'] = Strings::substrFrom($k, 'buy_');
 			}
 		}
+		return null;
 	}
 
-	public function execute()
+	public function execute(): GDT
 	{
 		$moduleName = $this->inputs['payment'];
 		if (!($this->paymentModule = ModuleLoader::instance()->getModule($moduleName)))
