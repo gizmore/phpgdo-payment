@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Payment\Method;
 
+use GDO\Core\GDO_ArgError;
 use GDO\Core\GDT_Object;
 use GDO\Date\Time;
 use GDO\Form\GDT_AntiCSRF;
@@ -50,11 +51,11 @@ final class Order extends MethodForm
 	}
 
 	/**
-	 * @return GDO_Order
+	 * @throws GDO_ArgError
 	 */
-	public function getOrder()
+	public function getOrder(): GDO_Order
 	{
-		return GDO_Order::table()->find(Common::getRequestString('id'));
+		return $this->gdoParameterValue('id');
 	}
 
 	public function onEdit()
