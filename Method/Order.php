@@ -36,7 +36,7 @@ final class Order extends MethodForm
 		];
 	}
 
-	public function createForm(GDT_Form $form): void
+	protected function createForm(GDT_Form $form): void
 	{
 		$order = $this->getOrder();
 		$address = $order->getAddress();

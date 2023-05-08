@@ -14,7 +14,7 @@ class GDT_PaymentModule extends GDT_ObjectSelect
 
 	public function defaultLabel(): self { return $this->label('payment'); }
 
-	public function getChoices(): array
+	protected function getChoices(): array
 	{
 		return PaymentModule::allPaymentModules();
 	}

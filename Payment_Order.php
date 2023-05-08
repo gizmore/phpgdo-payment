@@ -3,7 +3,7 @@ namespace GDO\Payment;
 
 use GDO\Address\GDT_Address;
 use GDO\Core\GDO;
-use GDO\Core\GDO_Error;
+use GDO\Core\GDO_Exception;
 use GDO\Core\GDT;
 use GDO\Core\GDT_Hook;
 use GDO\Core\GDT_Response;
@@ -43,11 +43,11 @@ abstract class Payment_Order extends MethodForm
 		$orderable = $this->getOrderable();
 		if (!($orderable instanceof GDO))
 		{
-			throw new GDO_Error('err_gdo_type', [$this->order->gdoClassName(), 'GDO']);
+			throw new GDO_Exception('err_gdo_type', [$this->order->gdoClassName(), 'GDO']);
 		}
 		if (!($orderable instanceof Orderable))
 		{
-			throw new GDO_Error('err_gdo_type', [$this->order->gdoClassName(), 'Orderable']);
+			throw new GDO_Exception('err_gdo_type', [$this->order->gdoClassName(), 'Orderable']);
 		}
 
 		GDO_Session::set('gdo_orderable', $orderable);
