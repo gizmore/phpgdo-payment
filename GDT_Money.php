@@ -20,7 +20,8 @@ class GDT_Money extends GDT_Decimal
 	public int $digitsBefore = 13;
 	public int $digitsAfter = 4;
 
-	public function defaultLabel(): self { return $this->label('price'); }
+	public function gdtDefaultLabel(): ?string
+    { return 'price'; }
 
 	public function renderHTML(): string
 	{
