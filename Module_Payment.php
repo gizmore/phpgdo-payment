@@ -38,7 +38,7 @@ final class Module_Payment extends GDO_Module
 
 	public function getDependencies(): array
 	{
-		return ['Address', 'TCPDF', 'Mail'];
+		return ['Account', 'Address', 'TCPDF', 'Mail'];
 	}
 
 	public function href_administrate_module(): ?string { return href('Payment', 'Orders'); }

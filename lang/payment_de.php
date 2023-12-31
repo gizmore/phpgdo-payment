@@ -25,7 +25,6 @@ return [
 	'btn_order' => 'Bestellen',
 	'err_order_pending' => 'Ihre Zahlung ist weiterhin ausstehend.',
 #############################################################
-	'vat' => 'Steuernummer',
 	'btn_pdf_bill' => 'Rechnung',
 	'pdfbill_filename' => 'Rechnung_%s_%s_%s.pdf',
 	'pdf_subject_payment' => 'Zahlungsvorgang',
@@ -117,6 +116,5 @@ Im Anhang die Rechnung für die Unterlagen.
 	'err_order_cancel' => 'Sie können diese Bestellung nicht mehr stornieren.',
 #v6.10.6
 	'list_payment_yourorders' => 'Ihre %s Bestellungen',
-	'list_address_ownaddresses' => 'Ihre %s Adressen',
 	'view_order' => 'Bestellung ansehen',
 ];
