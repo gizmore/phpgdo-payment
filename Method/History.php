@@ -20,7 +20,7 @@ final class History extends MethodQueryList
 
 	public function gdoTable(): GDO { return GDO_Order::table(); }
 
-	public function getQuery(): Query
+	public function gdoQuery(): Query
 	{
 		return GDO_Order::table()->select()->where('order_by=' . GDO_User::current()->getID());
 	}

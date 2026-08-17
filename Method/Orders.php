@@ -25,7 +25,7 @@ final class Orders extends MethodQueryTable
 		return GDO_Order::table();
 	}
 
-	public function getQuery(): Query
+	public function gdoQuery(): Query
 	{
 		return $this->gdoTable()->select()->joinObject('order_address', 'LEFT JOIN');
 	}
