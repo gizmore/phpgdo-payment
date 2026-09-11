@@ -5,6 +5,7 @@ use GDO\Payment\GDO_Order;
 use GDO\Payment\GDT_Money;
 use GDO\Payment\Module_Payment;
 use GDO\UI\GDT_Card;
+use GDO\UI\GDT_Title;
 
 /**
  * @var $gdo GDO_Order
@@ -14,7 +15,7 @@ $payment = $gdo->getPaymentModule();
 $o = $gdo->getOrderable();
 
 $card = GDT_Card::make();
-$card->title('card_title_order');
+$card->title(GDT_Title::make()->title('card_title_order'));
 $card->subtitleRaw($gdo->getTitle());
 
 $card->addFields(

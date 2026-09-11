@@ -51,6 +51,10 @@ abstract class Payment_Order extends MethodForm
 		}
 
 		GDO_Session::set('gdo_orderable', $orderable);
+		// Persist the checkout state before rendering the card. Rendering is
+		// extensible and may fail independently of the selected orderable; in
+		// that case the next request must not lose the user's article.
+		GDO_Session::commit();
 // 		$user->tempSet('gdo_orderable', $orderable);
 // 		$user->recache();
 

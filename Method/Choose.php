@@ -27,7 +27,7 @@ final class Choose extends Method
 
 	private GDO_User $user;
 
-	private Orderable $orderable;
+	private ?Orderable $orderable = null;
 
 	private PaymentModule $paymentModule;
 
@@ -106,11 +106,14 @@ final class Choose extends Method
 	}
 
 	/**
-	 * @return Orderable|GDO
+	 * The checkout item lives in the session until the payment processor has
+	 * created its order. A missing/expired session is a normal checkout error,
+	 * not a PHP type error.
 	 */
-	public function getOrderable(): Orderable
+	public function getOrderable(): ?Orderable
 	{
-		return GDO_Session::get('gdo_orderable');
+		$orderable = GDO_Session::get('gdo_orderable');
+		return $orderable instanceof Orderable ? $orderable : null;
 	}
 
 }

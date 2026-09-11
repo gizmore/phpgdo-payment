@@ -82,7 +82,7 @@ final class GDO_Order extends GDO
 
 	public function href_pdf() { return href('Payment', 'PDFBill', '&id=' . $this->getID()); }
 
-	public function redirectFailure() { return GDT_Redirect::toMessage($this->href_failure()); }
+	public function redirectFailure(): GDT_Redirect { return GDT_Redirect::to($this->href_failure()); }
 
 	public function href_failure() { return $this->getOrderable()->getOrderCancelURL(GDO_User::current()); }
 
@@ -206,7 +206,7 @@ final class GDO_Order extends GDO
 		$this->updateQuery()->set("order_num = ( $subselect )")->exec();
 	}
 
-	public function redirectSuccess() { return GDT_Redirect::toMessage($this->href_success()); }
+	public function redirectSuccess(): string { return $this->href_success(); }
 
 	##############
 	### Static ###
