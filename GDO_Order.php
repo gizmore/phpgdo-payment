@@ -186,6 +186,7 @@ final class GDO_Order extends GDO
 		# Exec Job
 		$orderable = $this->getOrderable();
 		$response = $orderable->onOrderPaid();
+		$this->getAddress()?->setDefaultBilling();
 
 		# Update Order
 		$this->saveVar('order_executed', Time::getDate());

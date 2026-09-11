@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Payment;
 
+use GDO\Address\GDO_Address;
 use GDO\Address\GDT_Address;
 use GDO\Core\GDO;
 use GDO\Core\GDO_Exception;
@@ -12,6 +13,7 @@ use GDO\Form\MethodForm;
 use GDO\Session\GDO_Session;
 use GDO\UI\GDT_Button;
 use GDO\UI\GDT_HTML;
+use GDO\User\GDO_User;
 
 abstract class Payment_Order extends MethodForm
 {
@@ -70,7 +72,12 @@ abstract class Payment_Order extends MethodForm
 	{
 		$form = GDT_Form::make('form');
 		$form->action(href('Payment', 'Choose'));
-		$form->addField(GDT_Address::make('order_address')->onlyOwn()->emptyLabel('order_needs_address_first')->notNull());
+		$address = GDT_Address::make('order_address')->onlyOwn()->emptyLabel('order_needs_address_first')->notNull();
+		if ($default = $this->getDefaultBillingAddress())
+		{
+			$address->value($default);
+		}
+		$form->addField($address);
 		foreach (PaymentModule::allPaymentModules() as $module)
 		{
 			if ($orderable->canPayOrderWith($module))
@@ -80,6 +87,17 @@ abstract class Payment_Order extends MethodForm
 		}
 		$form->addField(GDT_Button::make('link_add_address')->href(href('Address', 'Add', '&_rb=' . ($_SERVER['REQUEST_URI']))));
 		return GDT_Response::makeWith(GDT_HTML::make()->var($orderable->renderOrderCard()))->addField(GDT_Response::makeWith($form));
+	}
+
+	private function getDefaultBillingAddress(): ?GDO_Address
+	{
+		$uid = GDO_User::current()->getID();
+		$table = GDO_Address::table();
+		if ($address = $table->select()->where("address_creator=$uid")->where('default_billing=1')->order('address_created DESC,address_id DESC')->first()->exec()->fetchObject())
+		{
+			return $address;
+		}
+		return $table->select()->where("address_creator=$uid")->order('address_created DESC,address_id DESC')->first()->exec()->fetchObject() ?: null;
 	}
 
 }
