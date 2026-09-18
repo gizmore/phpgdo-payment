@@ -60,7 +60,10 @@ final class Module_Payment extends GDO_Module
 			GDT_Email::make('billing_mail_sender')->initial(GDO_BOT_EMAIL),
 			GDT_Email::make('billing_mail_reciver'),
 			GDT_Checkbox::make('payment_feature_vat_no_tax')->initial('1'),
+			# Master switch for every Payment sidebar entry.
 			GDT_Checkbox::make('right_bar')->initial('1'),
+			GDT_Checkbox::make('right_bar_your_orders')->initial('1'),
+			GDT_Checkbox::make('right_bar_orders')->initial('1'),
 		];
 	}
 
@@ -68,7 +71,7 @@ final class Module_Payment extends GDO_Module
 	{
 		if ($this->cfgRightBar())
 		{
-			if (GDO_User::current()->isUser())
+			if ($this->cfgRightBarYourOrders() && GDO_User::current()->isUser())
 			{
 				$bar = GDT_Page::$INSTANCE->rightBar();
 				$menu = GDT_Menu::make('menu_payment');
@@ -76,7 +79,7 @@ final class Module_Payment extends GDO_Module
 				$menu->addField(GDT_Link::make('link_your_orders')->href(href('Payment', 'YourOrders')));
 				$bar->addField($menu);
 			}
-			if (GDO_User::current()->isStaff())
+			if ($this->cfgRightBarOrders() && GDO_User::current()->isStaff())
 			{
 				$page = GDT_Page::instance();
 				$rb = $page->rightBar();
@@ -87,6 +90,10 @@ final class Module_Payment extends GDO_Module
 	}
 
 	public function cfgRightBar() { return $this->getConfigValue('right_bar'); }
+
+	public function cfgRightBarYourOrders() { return $this->getConfigValue('right_bar_your_orders'); }
+
+	public function cfgRightBarOrders() { return $this->getConfigValue('right_bar_orders'); }
 
 	public function cfgCompanyName() { return $this->getConfigVar('company_name'); }
 
