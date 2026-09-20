@@ -6,6 +6,7 @@ return [
 	'executed_at' => 'Ausgeführt am',
 #############################################################
 	'price' => 'Preis',
+	'cfg_fee_buy' => 'Kaufgebühr in %',
 #############################################################
 	'err_order' => 'Deine Bestellung konnte nicht gefunden werden.',
 	'err_orderable' => 'Bitte wählen Sie zuerst einen Artikel aus.',
