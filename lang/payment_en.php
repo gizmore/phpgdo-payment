@@ -18,6 +18,9 @@ return [
 	'msg_order_execute' => 'Your order has been executed successfully.',
 #############################################################
 	'mt_payment_order' => 'Order',
+	'mt_payment_history' => 'Payment History',
+	'mt_payment_orders' => 'Orders',
+	'mt_payment_yourorders' => 'Your Orders',
 	'btn_execute' => 'Execute',
 #############################################################
 	'link_your_orders' => 'Your orders',
